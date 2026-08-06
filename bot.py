@@ -52,6 +52,31 @@ for i, df in enumerate(lista_informes):
 df_consolidado = pd.concat(lista_informes, ignore_index=True)
 print(df_consolidado.columns)  # ahora muestra exactamente 7
 
+# --------------------------------------------
+# PARTE 4: Limpieza de datos (NUEVO - hoy)
+# --------------------------------------------
+
+# 4a. Eliminar filas duplicadas
+filas_antes = len(df_consolidado)
+df_consolidado = df_consolidado.drop_duplicates()
+print(f"Filas antes: {filas_antes} - despues: {len(df_consolidado)}")
+
+# 4b. Explorar valores nulos ANTES de decidir que hacer
+print(df_consolidado.isnull().sum())
+
+df_consolidado['metodo_pago'] = df_consolidado['metodo_pago'].fillna('No especificado')
+
+# vendedor: igual, es texto -> etiqueta explicita en vez de adivinar
+# quien hizo la venta.
+df_consolidado['vendedor'] = df_consolidado['vendedor'].fillna('No especificado')
+
+df_consolidado['precio_unitario'] = df_consolidado['precio_unitario'].fillna(
+    df_consolidado['precio_unitario'].median()
+)
+
+# Verificacion final: ya no deberia quedar ningun nulo
+print(df_consolidado.isnull().sum())
+
 
 # --------------------------------------------
 # PARTE 5: Guardar el resultado
