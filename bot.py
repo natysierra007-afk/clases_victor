@@ -152,6 +152,19 @@ print(datos_productos)
 # Paso 3: hagan el gráfico que consideren más apropiado
 # Paso 4: guarden como "grafico_metodo_pago.png"
 
+grafico_metodo_pago = df_consolidado.groupby("metodo_pago")["precio_unitario"].sum()
+print(grafico_metodo_pago)
+
+grafico_metodo_pago.plot(kind="bar", title="metoodos de pago por precio unitario")
+plt.ticklabel_format(style="plain", axis="y")
+plt.ylabel("metodo pago")
+plt.xlabel("precio unitario")
+plt.xticks(rotation=0)
+plt.tight_layout()
+plt.savefig("grafico_metodo_pago.png")
+plt.show()
+
+
 
 # --------------------------------------------
 # RETO OPCIONAL - Para quien termine las 4 preguntas
