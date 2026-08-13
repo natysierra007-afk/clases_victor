@@ -5,6 +5,7 @@
 
 import matplotlib.pyplot as plt
 import pandas as pd
+import datetime as dt
 import glob
 
 # --------------------------------------------
@@ -174,3 +175,16 @@ plt.show()
 # fecha a formato de fecha real
 # Paso 2: investiguen .dt.day_name() para extraer el día de la semana
 # Paso 3: agrupen por ese nuevo dato y sumen las ventas
+
+
+#normalizando columna fecha
+
+
+df_consolidado['fecha'] = df_consolidado['fecha'].str.replace('/', '-')
+df_consolidado['fecha'] = df_consolidado['fecha'].str.replace(r'^(\d{4})-(\d{2})-(\d{2})$', r'\3-\2-\1', regex=True)
+
+df_consolidado["fecha"] = pd.to_datetime(df_consolidado["fecha"])
+df_consolidado["dia_semana"] = df_consolidado["fecha"].dt.day_name()
+
+agrupacion_dias= df_consolidado.groupby('dia_semana')['precio_unitario'].sum()
+print(agrupacion_dias)
