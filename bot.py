@@ -136,7 +136,8 @@ plt.show()
 # Paso 2: apliquenla a la columna producto
 # Paso 3: impriman el resultado
 
-
+datos_productos = df_consolidado["producto"].value_counts()
+print(datos_productos)
 
 
 
