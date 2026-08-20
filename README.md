@@ -29,3 +29,7 @@ Durante las pruebas se obtuvieron los siguientes resultados:
 | Test 3 | OK |
 
 Esto muestra que el código funciona en la mayoría de los casos, pero aún necesita mejoras.
+
+5. ## Conclusión final
+El proyecto es útil para aprender Git y buenas prácticas de commits.  
+Además, permite integrar análisis sencillos en Python y reforzar el uso de ramas en Git.
